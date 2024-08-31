@@ -11,6 +11,8 @@ class ContactUsPage extends StatelessWidget {
   final String googleMapsUrl =
       'https://www.google.com/maps/place/123+Dream+St,+Dream+City,+DR+12345';
 
+  const ContactUsPage({super.key});
+
   // دالة لفتح الرابط
   Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -34,7 +36,7 @@ class ContactUsPage extends StatelessWidget {
               color: isDarkTheme ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 26,
-              shadows: [
+              shadows: const [
                 Shadow(
                   color: Colors.black, // لون الظل
                   offset: Offset(1.0, 1.0), // إزاحة الظل
@@ -58,14 +60,14 @@ class ContactUsPage extends StatelessWidget {
                     'https://images.pexels.com/photos/3651577/pexels-photo-3651577.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                 fit: BoxFit.cover,
                 placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
+                    const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) =>
-                    Center(child: Icon(Icons.error)),
+                    const Center(child: Icon(Icons.error)),
               ),
             ),
           ),
           SingleChildScrollView(
-            padding: EdgeInsets.all(22.0),
+            padding: const EdgeInsets.all(22.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -79,13 +81,13 @@ class ContactUsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _buildTextField(context, 'Name'),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _buildTextField(context, 'Email'),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _buildTextField(context, 'Phone Number'),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Message',
@@ -100,9 +102,9 @@ class ContactUsPage extends StatelessWidget {
                   ),
                   style: TextStyle(
                       color: isDarkTheme ? Colors.white : Colors.black),
-                  maxLines: 4,
+                  maxLines: 3,
                 ),
-                SizedBox(height: 32.0),
+                const SizedBox(height: 32.0),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
@@ -113,13 +115,13 @@ class ContactUsPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 15),
                     ),
                     child: Text(
                       'SEND',
                       style: GoogleFonts.roboto(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -128,26 +130,43 @@ class ContactUsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Divider(
                   thickness: 6,
                   color: themeProvider.buttonColor,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
+                Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: GestureDetector(
+                      onTap: () {
+                        _launchURL(googleMapsUrl);
+                      },
+                      child: Image.asset(
+                        'assets/images/p17.png',
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        height: 85,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 _buildContactInfo(context, 'Address:',
                     '123 Dream St, Dream City, DR 12345', googleMapsUrl),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 _buildContactInfo(context, 'Phone:', '+1 234 567 890'),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 _buildContactInfo(context, 'Email:', 'info@dreamhotel.com'),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   'Follow Us:',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 21,
                     color: isDarkTheme ? Colors.white : Colors.black,
-                    shadows: [
+                    shadows: const [
                       Shadow(
                         color: Colors.black,
                         offset: Offset(1.0, 1.0),
@@ -159,14 +178,14 @@ class ContactUsPage extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.facebook_sharp),
+                      icon: const Icon(Icons.facebook_sharp),
                       color: isDarkTheme ? Colors.white : Colors.black,
                       onPressed: () {
                         // أضف رابط Facebook هنا
                       },
                     ),
                     IconButton(
-                      icon: Icon(Icons.telegram_outlined),
+                      icon: const Icon(Icons.telegram_outlined),
                       color: isDarkTheme ? Colors.white : Colors.black,
                       onPressed: () {
                         // أضف رابط Telegram هنا
@@ -174,7 +193,7 @@ class ContactUsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 14),
+                const SizedBox(height: 14),
               ],
             ),
           ),
@@ -217,7 +236,7 @@ class ContactUsPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontSize: 22,
             color: isDarkTheme ? Colors.white : Colors.black,
-            shadows: [
+            shadows: const [
               Shadow(
                 color: Colors.black,
                 offset: Offset(1.0, 1.0),

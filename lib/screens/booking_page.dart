@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // استيراد مكتبة ScreenUtil
 import 'package:hotel1/screens/about_page.dart';
+import 'package:hotel1/screens/blog_page.dart';
 import 'package:hotel1/screens/contact_us_page.dart';
 import 'package:hotel1/screens/gallery_page.dart';
 import 'package:hotel1/screens/our_rooms_page.dart';
@@ -228,35 +229,41 @@ class _BookingPageState extends State<BookingPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 14.h), // استخدام وحدة h
-              // الصفحات السفلية
+              SizedBox(height: 14.h),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: 785.h, // تحديد أقصى ارتفاع باستخدام وحدة h
+                  maxHeight: 780.h,
                   maxWidth: double.infinity,
                 ),
-                child: AboutPage(),
+                child: const AboutPage(),
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: 1365.h, // تحديد أقصى ارتفاع باستخدام وحدة h
+                  maxHeight: 1365.h,
                   maxWidth: double.infinity,
                 ),
                 child: GalleryPage(),
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: 1266.h, // تحديد أقصى ارتفاع باستخدام وحدة h
+                  maxHeight: 1260.h,
                   maxWidth: double.infinity,
                 ),
                 child: const OurRoomsPage(),
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: 1040.h, // تحديد أقصى ارتفاع باستخدام وحدة h
+                  maxHeight: 1601.h,
                   maxWidth: double.infinity,
                 ),
-                child: ContactUsPage(),
+                child: const BlogPage(),
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 1150.h,
+                  maxWidth: double.infinity,
+                ),
+                child: const ContactUsPage(),
               ),
             ],
           ),
@@ -284,8 +291,8 @@ class _BookingPageState extends State<BookingPage> {
                 fontSize: 18.sp, // استخدام وحدة sp
               ),
             ),
-            Spacer(),
-            Icon(Icons.calendar_today, color: Colors.black),
+            const Spacer(),
+            const Icon(Icons.calendar_today, color: Colors.black),
           ],
         ),
       ),
@@ -307,7 +314,7 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleTheme(ThemeMode.light);
                   Navigator.of(context).pop();
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.white,
                   child: Icon(Icons.wb_sunny, color: Colors.black),
                 ),
@@ -317,7 +324,7 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleTheme(ThemeMode.dark);
                   Navigator.of(context).pop();
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.black,
                   child: Icon(Icons.nights_stay, color: Colors.white),
                 ),
@@ -344,7 +351,7 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleButtonColor(Colors.red);
                   Navigator.of(context).pop();
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.red,
                 ),
               ),
@@ -353,7 +360,7 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleButtonColor(Colors.blue);
                   Navigator.of(context).pop();
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.blue,
                 ),
               ),
@@ -362,7 +369,7 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleButtonColor(Colors.green);
                   Navigator.of(context).pop();
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.green,
                 ),
               ),
@@ -372,7 +379,7 @@ class _BookingPageState extends State<BookingPage> {
                       const Color.fromARGB(255, 147, 11, 214));
                   Navigator.of(context).pop();
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 147, 11, 214),
                 ),
               ),

@@ -33,7 +33,7 @@ class GalleryPage extends StatelessWidget {
               shadows: [
                 Shadow(
                   color: Colors.black, // لون الظل
-                  offset: Offset(1.0, 1.0), // إزاحة الظل
+                  offset: const Offset(1.0, 1.0), // إزاحة الظل
                   blurRadius: 35.sp, // مدى ضبابية الظل باستخدام وحدة sp
                 ),
               ],
@@ -47,18 +47,15 @@ class GalleryPage extends StatelessWidget {
         child: Column(
           children: [
             GridView.builder(
-              shrinkWrap: true, // Prevent GridView from expanding infinitely
-              physics:
-                  NeverScrollableScrollPhysics(), // Disable scrolling inside GridView
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1, // استخدام عدد أعمدة يناسب الشاشات المختلفة
-                childAspectRatio: 1.7, // نسبة العرض إلى الارتفاع للصور
-                crossAxisSpacing:
-                    8.w, // استخدام وحدة w لتحديد المسافة بين الأعمدة
-                mainAxisSpacing:
-                    8.h, // استخدام وحدة h لتحديد المسافة بين الصفوف
+                crossAxisCount: 1,
+                childAspectRatio: 1.7,
+                crossAxisSpacing: 8.w,
+                mainAxisSpacing: 8.h,
               ),
-              padding: EdgeInsets.all(20.w), // استخدام وحدة w لتحديد الحشو
+              padding: EdgeInsets.all(20.w),
               itemCount: imageUrls.length,
               itemBuilder: (context, index) {
                 return Card(
@@ -68,9 +65,9 @@ class GalleryPage extends StatelessWidget {
                     imageUrl: imageUrls[index],
                     fit: BoxFit.cover,
                     placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator()),
                     errorWidget: (context, url, error) =>
-                        Center(child: Icon(Icons.error)),
+                        const Center(child: Icon(Icons.error)),
                   ),
                 );
               },

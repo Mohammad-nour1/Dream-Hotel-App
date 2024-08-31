@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // استيراد مكتبة ScreenUtil
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotel1/screens/splash_page.dart';
 import 'package:provider/provider.dart';
 import 'providers/theme_provider.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
           return ScreenUtilInit(
-            designSize: Size(375, 812), // الحجم الأصلي للتصميم
+            designSize: const Size(375, 812),
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (context, child) {

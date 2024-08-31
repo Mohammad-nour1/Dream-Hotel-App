@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel1/screens/Contact_Us_Page.dart';
 import 'package:hotel1/screens/about_page.dart';
+import 'package:hotel1/screens/blog_page.dart';
 import 'package:hotel1/screens/our_rooms_page.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel1/providers/theme_provider.dart';
@@ -45,13 +46,15 @@ class MenuPage extends StatelessWidget {
             color: Colors.black.withOpacity(0.7),
             child: ListView(
               children: <Widget>[
-                _buildMenuItem('Our Rooms', context),
+                _buildMenuItem('About', context),
                 Divider(color: dividerColor, thickness: 3),
                 _buildMenuItem('Gallery', context),
                 Divider(color: dividerColor, thickness: 3),
-                _buildMenuItem('Contact Us', context),
+                _buildMenuItem('Our Rooms', context),
                 Divider(color: dividerColor, thickness: 3),
-                _buildMenuItem('About', context),
+                _buildMenuItem('Blog', context),
+                Divider(color: dividerColor, thickness: 3),
+                _buildMenuItem('Contact Us', context),
                 Divider(color: dividerColor, thickness: 3),
               ],
             ),
@@ -75,7 +78,7 @@ class MenuPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AboutPage(),
+              builder: (context) => const AboutPage(),
             ),
           );
         } else if (title == 'Contact Us') {
@@ -92,11 +95,18 @@ class MenuPage extends StatelessWidget {
               builder: (context) => GalleryPage(),
             ),
           );
+        } else if (title == 'Blog') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const BlogPage(),
+            ),
+          );
         } else if (title == 'Our Rooms') {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => OurRoomsPage(),
+              builder: (context) => const OurRoomsPage(),
             ),
           );
         } else {

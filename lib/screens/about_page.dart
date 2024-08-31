@@ -6,6 +6,8 @@ import 'package:hotel1/providers/theme_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // استيراد مكتبة ScreenUtil
 
 class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -20,7 +22,7 @@ class AboutPage extends StatelessWidget {
               color: isDarkTheme ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 26.sp, // استخدام وحدة sp
-              shadows: [
+              shadows: const [
                 Shadow(
                   color: Colors.black, // لون الظل
                   offset: Offset(1.0, 1.0), // إزاحة الظل
@@ -67,15 +69,15 @@ class AboutPage extends StatelessWidget {
                 onPressed: () {
                   // Action for "Read More"
                 },
-                child: Text(
-                  'Read More',
-                  style: TextStyle(color: Colors.white),
-                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: themeProvider.buttonColor,
                   padding: EdgeInsets.symmetric(
                       horizontal: 50.w, vertical: 15.h), // استخدام وحدات w و h
                   textStyle: TextStyle(fontSize: 18.sp), // استخدام وحدة sp
+                ),
+                child: const Text(
+                  'Read More',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
               SizedBox(height: 40.h), // استخدام وحدة h
@@ -84,9 +86,9 @@ class AboutPage extends StatelessWidget {
                     'https://images.pexels.com/photos/14024019/pexels-photo-14024019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1/image.jpg',
                 fit: BoxFit.cover,
                 placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
+                    const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) =>
-                    Center(child: Icon(Icons.error)),
+                    const Center(child: Icon(Icons.error)),
               ),
             ],
           ),
