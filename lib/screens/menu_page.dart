@@ -85,7 +85,7 @@ class MenuPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ContactUsPage(),
+              builder: (context) => const ContactUsPage(),
             ),
           );
         } else if (title == 'Gallery') {

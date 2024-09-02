@@ -48,7 +48,7 @@ class AboutPage extends StatelessWidget {
                   fontSize: 17.sp, // استخدام وحدة sp
                   fontWeight: FontWeight.bold,
                   color: isDarkTheme ? Colors.white : Colors.black,
-                  height: 1.3,
+                  height: 0.1,
                 ),
               ),
               SizedBox(height: 10.h), // استخدام وحدة h

@@ -72,7 +72,7 @@ class ContactUsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'About You',
+                  'About Us',
                   style: GoogleFonts.roboto(
                     textStyle: TextStyle(
                       color: isDarkTheme ? Colors.white : Colors.black,
@@ -81,60 +81,9 @@ class ContactUsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16.0),
-                _buildTextField(context, 'Name'),
-                const SizedBox(height: 16.0),
-                _buildTextField(context, 'Email'),
-                const SizedBox(height: 16.0),
-                _buildTextField(context, 'Phone Number'),
-                const SizedBox(height: 16.0),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Message',
-                    labelStyle: GoogleFonts.roboto(
-                      color: isDarkTheme ? Colors.white : Colors.black,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    filled: true,
-                    fillColor: isDarkTheme ? Colors.black54 : Colors.white,
-                  ),
-                  style: TextStyle(
-                      color: isDarkTheme ? Colors.white : Colors.black),
-                  maxLines: 3,
-                ),
-                const SizedBox(height: 32.0),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // أضف الوظيفة التي تريدها هنا
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: themeProvider.buttonColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 15),
-                    ),
-                    child: Text(
-                      'SEND',
-                      style: GoogleFonts.roboto(
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Divider(
-                  thickness: 6,
-                  color: themeProvider.buttonColor,
-                ),
+                const SizedBox(
+                    height: 2.0), // زيادة المسافة هنا بعد حذف العناصر
+
                 const SizedBox(height: 16),
                 Center(
                   child: ClipRRect(
@@ -146,7 +95,7 @@ class ContactUsPage extends StatelessWidget {
                       child: Image.asset(
                         'assets/images/p17.png',
                         width: MediaQuery.of(context).size.width * 0.9,
-                        height: 85,
+                        height: 240,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -193,32 +142,12 @@ class ContactUsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 135),
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildTextField(BuildContext context, String label) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    bool isDarkTheme = themeProvider.themeMode == ThemeMode.dark;
-
-    return TextField(
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: GoogleFonts.roboto(
-          color: isDarkTheme ? Colors.white : Colors.black,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        filled: true,
-        fillColor: isDarkTheme ? Colors.black54 : Colors.white,
-      ),
-      style: TextStyle(color: isDarkTheme ? Colors.white : Colors.black),
     );
   }
 

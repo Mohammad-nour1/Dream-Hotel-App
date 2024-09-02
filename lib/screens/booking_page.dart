@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // استيراد مكتبة ScreenUtil
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotel1/screens/about_page.dart';
 import 'package:hotel1/screens/blog_page.dart';
-import 'package:hotel1/screens/contact_us_page.dart';
 import 'package:hotel1/screens/gallery_page.dart';
 import 'package:hotel1/screens/our_rooms_page.dart';
 import 'package:provider/provider.dart';
@@ -85,15 +84,14 @@ class _BookingPageState extends State<BookingPage> {
           iconTheme: IconThemeData(color: textColor),
           title: Row(
             children: [
-              Image.asset('assets/icons/hotel-1880.png',
-                  height: 38.h), // استخدام وحدة h
-              SizedBox(width: 12.w), // استخدام وحدة w
+              Image.asset('assets/icons/hotel-1880.png', height: 38.h),
+              SizedBox(width: 12.w),
               Text(
                 'Dream Hotel',
                 style: GoogleFonts.merriweather(
                   color: textColor,
                   fontWeight: FontWeight.bold,
-                  fontSize: 24.sp, // استخدام وحدة sp
+                  fontSize: 24.sp,
                 ),
               ),
             ],
@@ -102,7 +100,7 @@ class _BookingPageState extends State<BookingPage> {
             PopupMenuButton(
               icon: Image.asset(
                 'assets/icons/brush_6873541.png',
-                height: 28.h, // استخدام وحدة h
+                height: 28.h,
               ),
               onSelected: (String result) {
                 if (result == 'theme') {
@@ -117,7 +115,7 @@ class _BookingPageState extends State<BookingPage> {
                   child: Row(
                     children: [
                       Icon(Icons.brightness_6, color: textColor),
-                      SizedBox(width: 10.w), // استخدام وحدة w
+                      SizedBox(width: 10.w),
                       Text('Toggle Theme', style: TextStyle(color: textColor)),
                     ],
                   ),
@@ -127,7 +125,7 @@ class _BookingPageState extends State<BookingPage> {
                   child: Row(
                     children: [
                       Icon(Icons.color_lens, color: textColor),
-                      SizedBox(width: 10.w), // استخدام وحدة w
+                      SizedBox(width: 10.w),
                       Text('Toggle Button Color',
                           style: TextStyle(color: textColor)),
                     ],
@@ -138,7 +136,7 @@ class _BookingPageState extends State<BookingPage> {
             IconButton(
               icon: Image.asset(
                 'assets/icons/menu_12318497.png',
-                height: 24.h, // استخدام وحدة h
+                height: 24.h,
                 color: themeProvider.buttonColor,
               ),
               onPressed: () {
@@ -152,122 +150,166 @@ class _BookingPageState extends State<BookingPage> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 580.h, // استخدام وحدة h
-                child: Stack(
-                  children: [
-                    PageView.builder(
-                      controller: _pageController,
-                      itemCount: _images.length,
-                      itemBuilder: (context, index) {
-                        return CachedNetworkImage(
-                          imageUrl: _images[index],
-                          fit: BoxFit.fill,
-                          placeholder: (context, url) =>
-                              const Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        );
-                      },
-                    ),
-                    // البطاقة الأمامية لحجز الغرف
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 85.0, left: 19.0, right: 19.0, bottom: 19.0),
-                      child: Card(
-                        color: Colors.black.withOpacity(0.7),
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10.r), // استخدام وحدة r
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(22.w), // استخدام وحدة w
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'BOOK A ROOM',
-                                style: GoogleFonts.oswald(
-                                  color: Colors.white,
-                                  fontSize: 24.sp, // استخدام وحدة sp
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 16.h), // استخدام وحدة h
-                              _buildDateField('Arrival', arrivalDate, true),
-                              SizedBox(height: 16.h), // استخدام وحدة h
-                              _buildDateField(
-                                  'Departure', departureDate, false),
-                              SizedBox(height: 20.h), // استخدام وحدة h
-                              ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: themeProvider.buttonColor,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 50.w, // استخدام وحدة w
-                                      vertical: 15.h), // استخدام وحدة h
-                                  textStyle: TextStyle(
-                                      fontSize: 18.sp), // استخدام وحدة sp
-                                ),
-                                child: Text(
-                                  'Book Now',
-                                  style: GoogleFonts.merriweather(
-                                    color: Colors.white,
+        body: Scrollbar(
+          thumbVisibility: true,
+          thickness: 10,
+          radius: const Radius.circular(20), // زوايا مدورة
+
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 625.h,
+                  child: Stack(
+                    children: [
+                      PageView.builder(
+                        controller: _pageController,
+                        itemCount: _images.length,
+                        itemBuilder: (context, index) {
+                          return CachedNetworkImage(
+                            imageUrl: _images[index],
+                            fit: BoxFit.fill,
+                            placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          );
+                        },
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 19.w, vertical: 19.h),
+                        child: Card(
+                          color: Colors.black.withOpacity(0.7),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(20.w),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'BOOK A ROOM',
+                                  style: GoogleFonts.oswald(
+                                    color: themeProvider.buttonColor,
+                                    fontSize:
+                                        22.sp, // تصغير الخط ليتناسب مع المساحة
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                              SizedBox(height: 20.h), // استخدام وحدة h
-                              _ContactInfo(),
-                            ],
+                                SizedBox(height: 10.h),
+                                _buildDateField('Arrival', arrivalDate, true),
+                                SizedBox(height: 10.h),
+                                _buildDateField(
+                                    'Departure', departureDate, false),
+                                SizedBox(height: 12.h),
+                                _buildTextField(context, 'Name'),
+                                SizedBox(
+                                    height: 8.h), // تقليل المسافة بين الحقول
+                                _buildTextField(context, 'Email'),
+                                SizedBox(height: 8.h),
+                                _buildTextField(context, 'Phone Number'),
+                                SizedBox(height: 8.h),
+                                _buildMessageField(context),
+                                SizedBox(height: 14.h),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // أضف الوظيفة التي تريدها هنا
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: themeProvider.buttonColor,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 40.w, vertical: 12.h),
+                                    textStyle: TextStyle(
+                                        fontSize: 16.sp), // تقليل حجم النص
+                                  ),
+                                  child: Text(
+                                    'SEND',
+                                    style: GoogleFonts.merriweather(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 16.h),
+                                _ContactInfo(),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 14.h),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 780.h,
-                  maxWidth: double.infinity,
+                SizedBox(height: 14.h),
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: 755.h,
+                    maxWidth: double.infinity,
+                  ),
+                  child: const AboutPage(),
                 ),
-                child: const AboutPage(),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 1365.h,
-                  maxWidth: double.infinity,
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: 1325.h,
+                    maxWidth: double.infinity,
+                  ),
+                  child: const OurRoomsPage(),
                 ),
-                child: GalleryPage(),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 1260.h,
-                  maxWidth: double.infinity,
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: 1365.h,
+                    maxWidth: double.infinity,
+                  ),
+                  child: GalleryPage(),
                 ),
-                child: const OurRoomsPage(),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 1601.h,
-                  maxWidth: double.infinity,
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: 1460.h,
+                    maxWidth: double.infinity,
+                  ),
+                  child: const BlogPage(),
                 ),
-                child: const BlogPage(),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 1150.h,
-                  maxWidth: double.infinity,
-                ),
-                child: const ContactUsPage(),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  // بناء حقل النص
+  Widget _buildTextField(BuildContext context, String label) {
+    return TextField(
+      maxLines: 1,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.r),
+        ),
+        hintText: label,
+        contentPadding: EdgeInsets.symmetric(
+            vertical: 5.h, horizontal: 10.w), // تقليل التباعد الداخلي
+        hintStyle: TextStyle(fontSize: 16.sp), // تقليل حجم النص
+      ),
+    );
+  }
+
+  // بناء حقل الرسالة
+  Widget _buildMessageField(BuildContext context) {
+    return TextField(
+      maxLines: 1,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.r),
+        ),
+        hintText: 'Message',
+        contentPadding: EdgeInsets.symmetric(
+            vertical: 12.h, horizontal: 10.w), // تقليل التباعد الداخلي
+        hintStyle: TextStyle(fontSize: 16.sp), // تقليل حجم النص
       ),
     );
   }
@@ -278,17 +320,17 @@ class _BookingPageState extends State<BookingPage> {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(5.r), // استخدام وحدة r
+          borderRadius: BorderRadius.circular(5.r),
         ),
         padding: EdgeInsets.symmetric(
-            vertical: 15.h, horizontal: 10.w), // استخدام وحدات h و w
+            vertical: 12.h, horizontal: 10.w), // تقليل التباعد الداخلي
         child: Row(
           children: [
             Text(
               date == null ? label : date.toLocal().toString().split(' ')[0],
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18.sp, // استخدام وحدة sp
+                fontSize: 16.sp, // تقليل حجم النص
               ),
             ),
             const Spacer(),
@@ -398,14 +440,12 @@ class _ContactInfo extends StatelessWidget {
       children: [
         Text(
           'For assistance , call us at 0123-4567',
-          style: TextStyle(
-              color: Colors.white, fontSize: 16.sp), // استخدام وحدة sp
+          style: TextStyle(color: Colors.white, fontSize: 16.sp),
         ),
-        SizedBox(height: 4.h), // استخدام وحدة h
+        SizedBox(height: 4.h),
         Text(
           'Or Email us at info@dreamhotel.com',
-          style: TextStyle(
-              color: Colors.white, fontSize: 16.sp), // استخدام وحدة sp
+          style: TextStyle(color: Colors.white, fontSize: 16.sp),
         ),
       ],
     );
