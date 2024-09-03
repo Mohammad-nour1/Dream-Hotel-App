@@ -140,7 +140,7 @@ class BlogPage extends StatelessWidget {
     bool isDarkTheme = themeProvider.themeMode == ThemeMode.dark;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 18.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
       child: InkWell(
         onTap: () => _showPostDetails(
             context, title, imageUrl, date, rating, price, comments),
@@ -148,7 +148,7 @@ class BlogPage extends StatelessWidget {
           elevation: 5,
           color: isDarkTheme ? Colors.grey[850] : Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(18),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

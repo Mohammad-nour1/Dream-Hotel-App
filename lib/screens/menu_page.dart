@@ -46,16 +46,16 @@ class MenuPage extends StatelessWidget {
             color: Colors.black.withOpacity(0.7),
             child: ListView(
               children: <Widget>[
-                _buildMenuItem('About', context),
-                Divider(color: dividerColor, thickness: 3),
-                _buildMenuItem('Gallery', context),
-                Divider(color: dividerColor, thickness: 3),
-                _buildMenuItem('Our Rooms', context),
-                Divider(color: dividerColor, thickness: 3),
-                _buildMenuItem('Blog', context),
-                Divider(color: dividerColor, thickness: 3),
-                _buildMenuItem('Contact Us', context),
-                Divider(color: dividerColor, thickness: 3),
+                _buildMenuItem('Contact Us', Icons.info, context),
+                _buildDivider(dividerColor),
+                _buildMenuItem('Gallery', Icons.photo_album, context),
+                _buildDivider(dividerColor),
+                _buildMenuItem('Our Rooms', Icons.hotel, context),
+                _buildDivider(dividerColor),
+                _buildMenuItem('Blog', Icons.article, context),
+                _buildDivider(dividerColor),
+                _buildMenuItem('About', Icons.contact_mail, context),
+                _buildDivider(dividerColor),
               ],
             ),
           ),
@@ -64,15 +64,18 @@ class MenuPage extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuItem(String title, BuildContext context) {
+  Widget _buildMenuItem(String title, IconData icon, BuildContext context) {
     return ListTile(
+      leading: Icon(icon, color: Colors.white),
       title: Text(
         title,
-        style: const TextStyle(
+        style: GoogleFonts.roboto(
           color: Colors.white,
           fontWeight: FontWeight.bold,
+          fontSize: 18.0,
         ),
       ),
+      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
       onTap: () {
         if (title == 'About') {
           Navigator.push(
@@ -118,6 +121,16 @@ class MenuPage extends StatelessWidget {
           );
         }
       },
+    );
+  }
+
+  Widget _buildDivider(Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Divider(
+        color: color,
+        thickness: 2,
+      ),
     );
   }
 }

@@ -43,7 +43,7 @@ class AboutPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'ABOUT US',
+                'About Our Hotel',
                 style: TextStyle(
                   fontSize: 17.sp, // استخدام وحدة sp
                   fontWeight: FontWeight.bold,
@@ -53,12 +53,9 @@ class AboutPage extends StatelessWidget {
               ),
               SizedBox(height: 10.h), // استخدام وحدة h
               Text(
-                'The passage experienced a surge in popularity during the 1960s when '
-                'Letraset used it on their dry-transfer sheets, and again during the '
-                '90s as desktop publishers bundled the text with their software. Today '
-                "it's seen all around the web; on templates, websites, and stock designs. "
-                'Use our generator to get your own, or read on for the authoritative '
-                'history of lorem ipsum.',
+                'Our Hotel is a modern, elegant 4-star hotel overlooking the sea, perfect for a romantic, charming vacation, in the enchanting setting of Taormina and the Ionian Sea.'
+                'The rooms at the Our Hotel are new, well-lit and inviting.'
+                'Our reception staff will be happy to help you during your stay in Taormina, suggesting itineraries, guided visits and some good restaurants in the historic centre.',
                 style: TextStyle(
                   fontSize: 18.sp, // استخدام وحدة sp
                   height: 1.6,
@@ -72,8 +69,8 @@ class AboutPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: themeProvider.buttonColor,
                   padding: EdgeInsets.symmetric(
-                      horizontal: 50.w, vertical: 15.h), // استخدام وحدات w و h
-                  textStyle: TextStyle(fontSize: 18.sp), // استخدام وحدة sp
+                      horizontal: 25.w, vertical: 15.h), // استخدام وحدات w و h
+                  textStyle: TextStyle(fontSize: 15.sp), // استخدام وحدة sp
                 ),
                 child: const Text(
                   'Read More',

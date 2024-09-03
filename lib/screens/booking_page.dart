@@ -31,6 +31,11 @@ class _BookingPageState extends State<BookingPage> {
   int _currentPage = 0;
   Timer? _timer;
 
+  final FocusNode _nameFocusNode = FocusNode();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _phoneFocusNode = FocusNode();
+  final FocusNode _messageFocusNode = FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -50,6 +55,10 @@ class _BookingPageState extends State<BookingPage> {
   void dispose() {
     _timer?.cancel();
     _pageController.dispose();
+    _nameFocusNode.dispose();
+    _emailFocusNode.dispose();
+    _phoneFocusNode.dispose();
+    _messageFocusNode.dispose();
     super.dispose();
   }
 
@@ -150,127 +159,138 @@ class _BookingPageState extends State<BookingPage> {
             ),
           ],
         ),
-        body: Scrollbar(
+        body: RawScrollbar(
           thumbVisibility: true,
-          thickness: 10,
+          thickness: 8,
           radius: const Radius.circular(20), // زوايا مدورة
-
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 625.h,
-                  child: Stack(
-                    children: [
-                      PageView.builder(
-                        controller: _pageController,
-                        itemCount: _images.length,
-                        itemBuilder: (context, index) {
-                          return CachedNetworkImage(
-                            imageUrl: _images[index],
-                            fit: BoxFit.fill,
-                            placeholder: (context, url) => const Center(
-                                child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 19.w, vertical: 19.h),
-                        child: Card(
-                          color: Colors.black.withOpacity(0.7),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(20.w),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'BOOK A ROOM',
-                                  style: GoogleFonts.oswald(
-                                    color: themeProvider.buttonColor,
-                                    fontSize:
-                                        22.sp, // تصغير الخط ليتناسب مع المساحة
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 10.h),
-                                _buildDateField('Arrival', arrivalDate, true),
-                                SizedBox(height: 10.h),
-                                _buildDateField(
-                                    'Departure', departureDate, false),
-                                SizedBox(height: 12.h),
-                                _buildTextField(context, 'Name'),
-                                SizedBox(
-                                    height: 8.h), // تقليل المسافة بين الحقول
-                                _buildTextField(context, 'Email'),
-                                SizedBox(height: 8.h),
-                                _buildTextField(context, 'Phone Number'),
-                                SizedBox(height: 8.h),
-                                _buildMessageField(context),
-                                SizedBox(height: 14.h),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // أضف الوظيفة التي تريدها هنا
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: themeProvider.buttonColor,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 40.w, vertical: 12.h),
-                                    textStyle: TextStyle(
-                                        fontSize: 16.sp), // تقليل حجم النص
-                                  ),
-                                  child: Text(
-                                    'SEND',
-                                    style: GoogleFonts.merriweather(
-                                      color: Colors.white,
+          thumbColor: themeProvider.buttonColor,
+          child: GestureDetector(
+            onTap: () {
+              FocusScope.of(context)
+                  .unfocus(); // إلغاء التركيز عند النقر في أي مكان آخر
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 625.h,
+                    child: Stack(
+                      children: [
+                        PageView.builder(
+                          controller: _pageController,
+                          itemCount: _images.length,
+                          itemBuilder: (context, index) {
+                            return CachedNetworkImage(
+                              imageUrl: _images[index],
+                              fit: BoxFit.fill,
+                              placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            );
+                          },
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 19.w, vertical: 19.h),
+                          child: Card(
+                            color: Colors.black.withOpacity(0.7),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(20.w),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    'BOOK A ROOM',
+                                    style: GoogleFonts.oswald(
+                                      color: themeProvider.buttonColor,
+                                      fontSize: 22
+                                          .sp, // تصغير الخط ليتناسب مع المساحة
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 16.h),
-                                _ContactInfo(),
-                              ],
+                                  SizedBox(height: 10.h),
+                                  _buildDateField('Arrival', arrivalDate, true),
+                                  SizedBox(height: 10.h),
+                                  _buildDateField(
+                                      'Departure', departureDate, false),
+                                  SizedBox(height: 12.h),
+                                  _buildTextField(
+                                      context, 'Name', _nameFocusNode),
+                                  SizedBox(
+                                      height: 8.h), // تقليل المسافة بين الحقول
+                                  _buildTextField(
+                                      context, 'Email', _emailFocusNode),
+                                  SizedBox(height: 8.h),
+                                  _buildTextField(
+                                      context, 'Phone Number', _phoneFocusNode),
+                                  SizedBox(height: 8.h),
+                                  _buildMessageField(context),
+                                  SizedBox(height: 14.h),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      // أضف الوظيفة التي تريدها هنا
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          themeProvider.buttonColor,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 40.w, vertical: 12.h),
+
+                                      textStyle: TextStyle(
+                                          fontSize: 16.sp), // تقليل حجم النص
+                                    ),
+                                    child: Text(
+                                      'SEND',
+                                      style: GoogleFonts.merriweather(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16.h),
+                                  _ContactInfo(),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 14.h),
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: 755.h,
-                    maxWidth: double.infinity,
+                  SizedBox(height: 14.h),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: 755.h,
+                      maxWidth: double.infinity,
+                    ),
+                    child: const AboutPage(),
                   ),
-                  child: const AboutPage(),
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: 1325.h,
-                    maxWidth: double.infinity,
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: 1325.h,
+                      maxWidth: double.infinity,
+                    ),
+                    child: const OurRoomsPage(),
                   ),
-                  child: const OurRoomsPage(),
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: 1365.h,
-                    maxWidth: double.infinity,
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: 1365.h,
+                      maxWidth: double.infinity,
+                    ),
+                    child: GalleryPage(),
                   ),
-                  child: GalleryPage(),
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: 1460.h,
-                    maxWidth: double.infinity,
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: 1460.h,
+                      maxWidth: double.infinity,
+                    ),
+                    child: const BlogPage(),
                   ),
-                  child: const BlogPage(),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -279,9 +299,12 @@ class _BookingPageState extends State<BookingPage> {
   }
 
   // بناء حقل النص
-  Widget _buildTextField(BuildContext context, String label) {
+  Widget _buildTextField(
+      BuildContext context, String label, FocusNode focusNode) {
     return TextField(
+      focusNode: focusNode,
       maxLines: 1,
+      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
@@ -293,12 +316,18 @@ class _BookingPageState extends State<BookingPage> {
             vertical: 5.h, horizontal: 10.w), // تقليل التباعد الداخلي
         hintStyle: TextStyle(fontSize: 16.sp), // تقليل حجم النص
       ),
+      onEditingComplete: () {
+        // عند الانتهاء من الكتابة، إلغاء التركيز
+        FocusScope.of(context).unfocus();
+      },
     );
   }
 
   // بناء حقل الرسالة
   Widget _buildMessageField(BuildContext context) {
     return TextField(
+      focusNode: _messageFocusNode,
+      style: const TextStyle(color: Colors.black),
       maxLines: 1,
       decoration: InputDecoration(
         filled: true,
@@ -311,6 +340,10 @@ class _BookingPageState extends State<BookingPage> {
             vertical: 12.h, horizontal: 10.w), // تقليل التباعد الداخلي
         hintStyle: TextStyle(fontSize: 16.sp), // تقليل حجم النص
       ),
+      onEditingComplete: () {
+        // عند الانتهاء من الكتابة، إلغاء التركيز
+        FocusScope.of(context).unfocus();
+      },
     );
   }
 
@@ -328,8 +361,9 @@ class _BookingPageState extends State<BookingPage> {
           children: [
             Text(
               date == null ? label : date.toLocal().toString().split(' ')[0],
-              style: TextStyle(
+              style: GoogleFonts.merriweather(
                 color: Colors.black,
+                fontWeight: FontWeight.bold,
                 fontSize: 16.sp, // تقليل حجم النص
               ),
             ),
@@ -343,6 +377,8 @@ class _BookingPageState extends State<BookingPage> {
 
   void showThemeDialog(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    bool isDarkTheme = themeProvider.themeMode == ThemeMode.dark;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -356,9 +392,21 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleTheme(ThemeMode.light);
                   Navigator.of(context).pop();
                 },
-                child: const CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.wb_sunny, color: Colors.black),
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: !isDarkTheme
+                          ? const Color.fromARGB(255, 190, 244, 140)
+                              .withOpacity(0.8)
+                          : Colors.transparent, // لون الدائرة الشفافة
+                      width: 4.0,
+                    ),
+                  ),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.wb_sunny, color: Colors.black),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -366,9 +414,21 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleTheme(ThemeMode.dark);
                   Navigator.of(context).pop();
                 },
-                child: const CircleAvatar(
-                  backgroundColor: Colors.black,
-                  child: Icon(Icons.nights_stay, color: Colors.white),
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: isDarkTheme
+                          ? const Color.fromARGB(255, 190, 244, 140)
+                              .withOpacity(0.8)
+                          : Colors.transparent, // لون الدائرة الشفافة
+                      width: 4.0,
+                    ),
+                  ),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.black,
+                    child: Icon(Icons.nights_stay, color: Colors.white),
+                  ),
                 ),
               ),
             ],
@@ -380,6 +440,8 @@ class _BookingPageState extends State<BookingPage> {
 
   void showColorDialog(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    Color currentButtonColor = themeProvider.buttonColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -393,8 +455,19 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleButtonColor(Colors.red);
                   Navigator.of(context).pop();
                 },
-                child: const CircleAvatar(
-                  backgroundColor: Colors.red,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: currentButtonColor == Colors.red
+                          ? Colors.grey.withOpacity(0.5)
+                          : Colors.transparent,
+                      width: 4.0,
+                    ),
+                  ),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.red,
+                  ),
                 ),
               ),
               GestureDetector(
@@ -402,8 +475,19 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleButtonColor(Colors.blue);
                   Navigator.of(context).pop();
                 },
-                child: const CircleAvatar(
-                  backgroundColor: Colors.blue,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: currentButtonColor == Colors.blue
+                          ? Colors.grey.withOpacity(0.5)
+                          : Colors.transparent,
+                      width: 4.0,
+                    ),
+                  ),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.blue,
+                  ),
                 ),
               ),
               GestureDetector(
@@ -411,8 +495,19 @@ class _BookingPageState extends State<BookingPage> {
                   themeProvider.toggleButtonColor(Colors.green);
                   Navigator.of(context).pop();
                 },
-                child: const CircleAvatar(
-                  backgroundColor: Colors.green,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: currentButtonColor == Colors.green
+                          ? Colors.grey.withOpacity(0.5)
+                          : Colors.transparent,
+                      width: 4.0,
+                    ),
+                  ),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.green,
+                  ),
                 ),
               ),
               GestureDetector(
@@ -421,8 +516,20 @@ class _BookingPageState extends State<BookingPage> {
                       const Color.fromARGB(255, 147, 11, 214));
                   Navigator.of(context).pop();
                 },
-                child: const CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 147, 11, 214),
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: currentButtonColor ==
+                              const Color.fromARGB(255, 147, 11, 214)
+                          ? Colors.grey.withOpacity(0.5)
+                          : Colors.transparent,
+                      width: 4.0,
+                    ),
+                  ),
+                  child: const CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 147, 11, 214),
+                  ),
                 ),
               ),
             ],

@@ -6,7 +6,7 @@ import 'providers/theme_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding
-      .ensureInitialized(); // تأكد من تهيئة إطار عمل Flutter بشكل صحيح
+      .ensureInitialized(); //تهيئة إطار عمل   
   runApp(const MyApp());
 }
 

@@ -55,7 +55,7 @@ class GalleryPage extends StatelessWidget {
                 crossAxisSpacing: 8.w,
                 mainAxisSpacing: 8.h,
               ),
-              padding: EdgeInsets.all(20.w),
+              padding: EdgeInsets.all(21.w),
               itemCount: imageUrls.length,
               itemBuilder: (context, index) {
                 return Card(

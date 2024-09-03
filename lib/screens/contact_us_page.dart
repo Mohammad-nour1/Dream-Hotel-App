@@ -72,7 +72,7 @@ class ContactUsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'About Us',
+                  'For Contact',
                   style: GoogleFonts.roboto(
                     textStyle: TextStyle(
                       color: isDarkTheme ? Colors.white : Colors.black,
