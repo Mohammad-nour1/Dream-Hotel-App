@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 import 'providers/theme_provider.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); //تهيئة إطار عمل   
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -31,6 +30,13 @@ class MyApp extends StatelessWidget {
                 themeMode: themeProvider.themeMode,
                 home: const SplashScreen(),
                 debugShowCheckedModeBanner: false,
+                // Add locale and localization delegates if needed
+                // locale: Locale('en', 'US'),
+                // localizationsDelegates: [
+                //   GlobalMaterialLocalizations.delegate,
+                //   GlobalWidgetsLocalizations.delegate,
+                //   GlobalCupertinoLocalizations.delegate,
+                // ],
               );
             },
           );

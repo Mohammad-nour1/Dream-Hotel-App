@@ -46,7 +46,7 @@ class MenuPage extends StatelessWidget {
             color: Colors.black.withOpacity(0.7),
             child: ListView(
               children: <Widget>[
-                _buildMenuItem('Contact Us', Icons.info, context),
+                _buildMenuItem('Contact Us', Icons.contact_mail, context),
                 _buildDivider(dividerColor),
                 _buildMenuItem('Gallery', Icons.photo_album, context),
                 _buildDivider(dividerColor),
@@ -54,7 +54,7 @@ class MenuPage extends StatelessWidget {
                 _buildDivider(dividerColor),
                 _buildMenuItem('Blog', Icons.article, context),
                 _buildDivider(dividerColor),
-                _buildMenuItem('About', Icons.contact_mail, context),
+                _buildMenuItem('About', Icons.info, context),
                 _buildDivider(dividerColor),
               ],
             ),
@@ -95,7 +95,7 @@ class MenuPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => GalleryPage(),
+              builder: (context) => const GalleryPage(),
             ),
           );
         } else if (title == 'Blog') {

@@ -161,7 +161,7 @@ class _BookingPageState extends State<BookingPage> {
         ),
         body: RawScrollbar(
           thumbVisibility: true,
-          thickness: 8,
+          thickness: 10,
           radius: const Radius.circular(20), // زوايا مدورة
           thumbColor: themeProvider.buttonColor,
           child: GestureDetector(
@@ -280,7 +280,7 @@ class _BookingPageState extends State<BookingPage> {
                       maxHeight: 1365.h,
                       maxWidth: double.infinity,
                     ),
-                    child: GalleryPage(),
+                    child: const GalleryPage(),
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(
