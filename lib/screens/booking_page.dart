@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotel1/screens/about_page.dart';
 import 'package:hotel1/screens/blog_page.dart';
+import 'package:hotel1/screens/contact_us_page.dart';
 import 'package:hotel1/screens/gallery_page.dart';
 import 'package:hotel1/screens/our_rooms_page.dart';
 import 'package:provider/provider.dart';
@@ -193,66 +194,58 @@ class _BookingPageState extends State<BookingPage> {
                         Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 19.w, vertical: 19.h),
-                          child: Card(
-                            color: Colors.black.withOpacity(0.7),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(20.w),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    'BOOK A ROOM',
-                                    style: GoogleFonts.oswald(
-                                      color: themeProvider.buttonColor,
-                                      fontSize: 22
-                                          .sp, // تصغير الخط ليتناسب مع المساحة
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.h),
-                                  _buildDateField('Arrival', arrivalDate, true),
-                                  SizedBox(height: 10.h),
-                                  _buildDateField(
-                                      'Departure', departureDate, false),
-                                  SizedBox(height: 12.h),
-                                  _buildTextField(
-                                      context, 'Name', _nameFocusNode),
-                                  SizedBox(
-                                      height: 8.h), // تقليل المسافة بين الحقول
-                                  _buildTextField(
-                                      context, 'Email', _emailFocusNode),
-                                  SizedBox(height: 8.h),
-                                  _buildTextField(
-                                      context, 'Phone Number', _phoneFocusNode),
-                                  SizedBox(height: 8.h),
-                                  _buildMessageField(context),
-                                  SizedBox(height: 14.h),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      // أضف الوظيفة التي تريدها هنا
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          themeProvider.buttonColor,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 40.w, vertical: 12.h),
-
-                                      textStyle: TextStyle(
-                                          fontSize: 16.sp), // تقليل حجم النص
-                                    ),
-                                    child: Text(
-                                      'SEND',
-                                      style: GoogleFonts.merriweather(
-                                        color: Colors.white,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                              width: 430.w, // عرض مناسب للكارد
+                              child: Card(
+                                color: Colors.black.withOpacity(0.7),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(20.w),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'BOOK A ROOM',
+                                        style: GoogleFonts.oswald(
+                                          color: themeProvider.buttonColor,
+                                          fontSize: 22.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
+                                      SizedBox(height: 15.h),
+                                      _buildDateField(
+                                          'Arrival', arrivalDate, true),
+                                      SizedBox(height: 15.h),
+                                      _buildDateField(
+                                          'Departure', departureDate, false),
+                                      SizedBox(height: 20.h),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          // أضف الوظيفة التي تريدها هنا
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              themeProvider.buttonColor,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 30.w, vertical: 12.h),
+                                          textStyle: TextStyle(fontSize: 16.sp),
+                                        ),
+                                        child: Text(
+                                          'SEND',
+                                          style: GoogleFonts.merriweather(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 20.h),
+                                      _ContactInfo(),
+                                    ],
                                   ),
-                                  SizedBox(height: 16.h),
-                                  _ContactInfo(),
-                                ],
+                                ),
                               ),
                             ),
                           ),
@@ -263,21 +256,21 @@ class _BookingPageState extends State<BookingPage> {
                   SizedBox(height: 14.h),
                   ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxHeight: 755.h,
+                      maxHeight: 785.h,
                       maxWidth: double.infinity,
                     ),
                     child: const AboutPage(),
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxHeight: 1325.h,
+                      maxHeight: 1570.h,
                       maxWidth: double.infinity,
                     ),
                     child: const OurRoomsPage(),
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxHeight: 1365.h,
+                      maxHeight: 900.h,
                       maxWidth: double.infinity,
                     ),
                     child: const GalleryPage(),
@@ -288,6 +281,13 @@ class _BookingPageState extends State<BookingPage> {
                       maxWidth: double.infinity,
                     ),
                     child: const BlogPage(),
+                  ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: 1327.h,
+                      maxWidth: double.infinity,
+                    ),
+                    child: const ContactUsPage(),
                   ),
                 ],
               ),
@@ -543,18 +543,33 @@ class _BookingPageState extends State<BookingPage> {
 class _ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'For assistance , call us at 0123-4567',
-          style: TextStyle(color: Colors.white, fontSize: 16.sp),
+    return Align(
+      alignment: Alignment.center, // لضبط النصوص في المنتصف
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 1.h), // مساحة عمودية حول النصوص
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'For assistance, call us at 0947341558',
+              textAlign: TextAlign.center, // لضبط النصوص في المنتصف أفقيًا
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.sp,
+              ),
+            ),
+            SizedBox(height: 4.h),
+            Text(
+              'Or email us at mastercoders20@gmail.com',
+              textAlign: TextAlign.center, // لضبط النصوص في المنتصف أفقيًا
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.sp,
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: 4.h),
-        Text(
-          'Or Email us at info@dreamhotel.com',
-          style: TextStyle(color: Colors.white, fontSize: 16.sp),
-        ),
-      ],
+      ),
     );
   }
 }

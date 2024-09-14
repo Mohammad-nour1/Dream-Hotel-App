@@ -22,13 +22,6 @@ class AboutPage extends StatelessWidget {
               color: isDarkTheme ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 26.sp, // استخدام وحدة sp
-              shadows: const [
-                Shadow(
-                  color: Colors.black, // لون الظل
-                  offset: Offset(1.0, 1.0), // إزاحة الظل
-                  blurRadius: 35.0, // مدى ضبابية الظل
-                ),
-              ],
             ),
           ),
         ),
@@ -53,9 +46,9 @@ class AboutPage extends StatelessWidget {
               ),
               SizedBox(height: 10.h), // استخدام وحدة h
               Text(
-                'Our Hotel is a modern, elegant 4-star hotel overlooking the sea, perfect for a romantic, charming vacation, in the enchanting setting of Taormina and the Ionian Sea.'
-                'The rooms at the Our Hotel are new, well-lit and inviting.'
-                'Our reception staff will be happy to help you during your stay in Taormina, suggesting itineraries, guided visits and some good restaurants in the historic centre.',
+                "The hotel was opened in 2014 and is a modern and elegant 4-star hotel overlooking the sea. It is ideal for a romantic and enchanting holiday, in the enchanting atmosphere of Taormina and the Ionian Sea."
+                "If you want perfect rooms, the rooms at our hotel are new, well-lit and attractive."
+                'Our reception staff will be happy to assist you during your stay at our hotel, suggesting itineraries, guided visits and some good restaurants.',
                 style: TextStyle(
                   fontSize: 18.sp, // استخدام وحدة sp
                   height: 1.6,

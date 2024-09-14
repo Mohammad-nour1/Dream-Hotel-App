@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:hotel1/providers/theme_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-
 class OurRoomsPage extends StatefulWidget {
   const OurRoomsPage({super.key});
 
@@ -37,13 +36,6 @@ class _OurRoomsPageState extends State<OurRoomsPage> {
               color: isDarkTheme ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 26,
-              shadows: const [
-                Shadow(
-                  color: Colors.black,
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 35.0,
-                ),
-              ],
             ),
           ),
         ),

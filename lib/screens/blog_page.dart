@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel1/providers/theme_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:hotel1/api/api_service.dart';  // استيراد خدمة API
-import 'package:hotel1/models/blog_model.dart';  // استيراد نموذج BlogPost
+import 'package:hotel1/api/api_service.dart'; // استيراد خدمة API
+import 'package:hotel1/models/blog_model.dart'; // استيراد نموذج BlogPost
 
 class BlogPage extends StatelessWidget {
   const BlogPage({super.key});
@@ -23,13 +23,6 @@ class BlogPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 27,
               color: isDarkTheme ? Colors.white : Colors.black,
-              shadows: const [
-                Shadow(
-                  color: Colors.black,
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 35.0,
-                ),
-              ],
             ),
           ),
         ),
@@ -40,7 +33,7 @@ class BlogPage extends StatelessWidget {
         ),
       ),
       body: FutureBuilder<List<BlogPost>>(
-        future: ApiService().fetchBlogPosts(),  // استدعاء خدمة API لجلب البيانات
+        future: ApiService().fetchBlogPosts(), // استدعاء خدمة API لجلب البيانات
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             // عرض مؤشر انتظار أثناء تحميل البيانات
@@ -105,14 +98,17 @@ class BlogPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(20.0)),
                 child: CachedNetworkImage(
                   imageUrl: imageUrl,
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 200,
-                  placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      const Center(child: Icon(Icons.error)),
                 ),
               ),
               Padding(
@@ -219,8 +215,10 @@ class BlogPage extends StatelessWidget {
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 200,
-                  placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      const Center(child: Icon(Icons.error)),
                 ),
                 const SizedBox(height: 20),
                 Text(

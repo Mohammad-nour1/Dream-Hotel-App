@@ -23,13 +23,6 @@ class GalleryPage extends StatelessWidget {
               color: isDarkTheme ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 27.sp, // استخدام وحدة sp لتحديد حجم النص
-              shadows: [
-                Shadow(
-                  color: Colors.black, // لون الظل
-                  offset: const Offset(1.0, 1.0), // إزاحة الظل
-                  blurRadius: 35.sp, // مدى ضبابية الظل باستخدام وحدة sp
-                ),
-              ],
             ),
           ),
         ),
@@ -43,7 +36,8 @@ class GalleryPage extends StatelessWidget {
             return const Center(
                 child: CircularProgressIndicator()); // مؤشر انتظار
           } else if (snapshot.hasError) {
-            return const Center(child: Text('Failed to load images')); // رسالة خطأ
+            return const Center(
+                child: Text('Failed to load images')); // رسالة خطأ
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(
                 child: Text('No images available')); // في حال عدم وجود بيانات
