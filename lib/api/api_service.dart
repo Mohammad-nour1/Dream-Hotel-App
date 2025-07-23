@@ -6,9 +6,8 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   static const String _baseUrl =
-      'https://hotel.mastercoders.dev/api'; // استبدل بالـ URL الخاص بالخادم
+      'https://hotel.mastercoders.dev/api'; 
 
-  // دالة لجلب الغرف
   Future<List<Room>> fetchRooms() async {
     final response = await http.get(
       Uri.parse('$_baseUrl/room/index'),
@@ -29,10 +28,9 @@ class ApiService {
   }
 
 /////////////////////////////////////////////////////
-  // دالة لجلب بيانات المدونة
   Future<List<BlogPost>> fetchBlogPosts() async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/blog/index'), // تعديل الرابط لنقطة نهاية المدونة
+      Uri.parse('$_baseUrl/blog/index'),
       headers: {
         'Accept': 'application/json',
       },
@@ -41,7 +39,7 @@ class ApiService {
     if (response.statusCode == 200) {
       List<dynamic> jsonData = json.decode(response.body);
 
-      // تحويل البيانات من JSON إلى قائمة من BlogPost
+      
       return jsonData.map((item) => BlogPost.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load blog posts');
@@ -58,10 +56,8 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      // تحويل استجابة JSON إلى List<String>
       List<dynamic> jsonData = json.decode(response.body);
 
-      // تحويل كل عنصر في قائمة JSON إلى String
       return List<String>.from(jsonData);
     } else {
       throw Exception('Failed to load images');

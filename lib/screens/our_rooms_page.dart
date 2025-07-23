@@ -63,8 +63,8 @@ class _OurRoomsPageState extends State<OurRoomsPage> {
                   room.title,
                   room.description,
                   room.imageUrl,
-                  '', // Assuming no date from API
-                  '', // Assuming no extra details from API
+                  '', 
+                  '', 
                 );
               }).toList(),
             ),

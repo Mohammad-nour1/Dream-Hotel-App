@@ -163,12 +163,12 @@ class _BookingPageState extends State<BookingPage> {
         body: RawScrollbar(
           thumbVisibility: true,
           thickness: 10,
-          radius: const Radius.circular(20), // زوايا مدورة
+          radius: const Radius.circular(20), 
           thumbColor: themeProvider.buttonColor,
           child: GestureDetector(
             onTap: () {
               FocusScope.of(context)
-                  .unfocus(); // إلغاء التركيز عند النقر في أي مكان آخر
+                  .unfocus();
             },
             child: SingleChildScrollView(
               child: Column(
@@ -197,7 +197,7 @@ class _BookingPageState extends State<BookingPage> {
                           child: Align(
                             alignment: Alignment.center,
                             child: SizedBox(
-                              width: 430.w, // عرض مناسب للكارد
+                              width: 430.w, 
                               child: Card(
                                 color: Colors.black.withOpacity(0.7),
                                 shape: RoundedRectangleBorder(
@@ -225,7 +225,6 @@ class _BookingPageState extends State<BookingPage> {
                                       SizedBox(height: 20.h),
                                       ElevatedButton(
                                         onPressed: () {
-                                          // أضف الوظيفة التي تريدها هنا
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor:
@@ -298,7 +297,6 @@ class _BookingPageState extends State<BookingPage> {
     );
   }
 
-  // بناء حقل النص
   Widget _buildTextField(
       BuildContext context, String label, FocusNode focusNode) {
     return TextField(
@@ -313,17 +311,15 @@ class _BookingPageState extends State<BookingPage> {
         ),
         hintText: label,
         contentPadding: EdgeInsets.symmetric(
-            vertical: 5.h, horizontal: 10.w), // تقليل التباعد الداخلي
-        hintStyle: TextStyle(fontSize: 16.sp), // تقليل حجم النص
+            vertical: 5.h, horizontal: 10.w), 
+        hintStyle: TextStyle(fontSize: 16.sp), 
       ),
       onEditingComplete: () {
-        // عند الانتهاء من الكتابة، إلغاء التركيز
         FocusScope.of(context).unfocus();
       },
     );
   }
 
-  // بناء حقل الرسالة
   Widget _buildMessageField(BuildContext context) {
     return TextField(
       focusNode: _messageFocusNode,
@@ -337,11 +333,11 @@ class _BookingPageState extends State<BookingPage> {
         ),
         hintText: 'Message',
         contentPadding: EdgeInsets.symmetric(
-            vertical: 12.h, horizontal: 10.w), // تقليل التباعد الداخلي
-        hintStyle: TextStyle(fontSize: 16.sp), // تقليل حجم النص
+            vertical: 12.h, horizontal: 10.w),
+        hintStyle: TextStyle(fontSize: 16.sp), 
       ),
       onEditingComplete: () {
-        // عند الانتهاء من الكتابة، إلغاء التركيز
+        
         FocusScope.of(context).unfocus();
       },
     );
@@ -356,7 +352,7 @@ class _BookingPageState extends State<BookingPage> {
           borderRadius: BorderRadius.circular(5.r),
         ),
         padding: EdgeInsets.symmetric(
-            vertical: 12.h, horizontal: 10.w), // تقليل التباعد الداخلي
+            vertical: 12.h, horizontal: 10.w), 
         child: Row(
           children: [
             Text(
@@ -364,7 +360,7 @@ class _BookingPageState extends State<BookingPage> {
               style: GoogleFonts.merriweather(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
-                fontSize: 16.sp, // تقليل حجم النص
+                fontSize: 16.sp,
               ),
             ),
             const Spacer(),
@@ -399,7 +395,7 @@ class _BookingPageState extends State<BookingPage> {
                       color: !isDarkTheme
                           ? const Color.fromARGB(255, 190, 244, 140)
                               .withOpacity(0.8)
-                          : Colors.transparent, // لون الدائرة الشفافة
+                          : Colors.transparent, 
                       width: 4.0,
                     ),
                   ),
@@ -421,7 +417,7 @@ class _BookingPageState extends State<BookingPage> {
                       color: isDarkTheme
                           ? const Color.fromARGB(255, 190, 244, 140)
                               .withOpacity(0.8)
-                          : Colors.transparent, // لون الدائرة الشفافة
+                          : Colors.transparent, 
                       width: 4.0,
                     ),
                   ),
@@ -544,15 +540,15 @@ class _ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.center, // لضبط النصوص في المنتصف
+      alignment: Alignment.center, 
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 1.h), // مساحة عمودية حول النصوص
+        padding: EdgeInsets.symmetric(vertical: 1.h), 
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'For assistance, call us at 0947341558',
-              textAlign: TextAlign.center, // لضبط النصوص في المنتصف أفقيًا
+              'For assistance, call us at 0930722854',
+              textAlign: TextAlign.center, 
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.sp,
@@ -561,7 +557,7 @@ class _ContactInfo extends StatelessWidget {
             SizedBox(height: 4.h),
             Text(
               'Or email us at mastercoders20@gmail.com',
-              textAlign: TextAlign.center, // لضبط النصوص في المنتصف أفقيًا
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.sp,

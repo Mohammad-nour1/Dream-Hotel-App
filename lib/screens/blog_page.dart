@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel1/providers/theme_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:hotel1/api/api_service.dart'; // استيراد خدمة API
-import 'package:hotel1/models/blog_model.dart'; // استيراد نموذج BlogPost
+import 'package:hotel1/api/api_service.dart'; 
+import 'package:hotel1/models/blog_model.dart'; 
 
 class BlogPage extends StatelessWidget {
   const BlogPage({super.key});
@@ -33,20 +33,16 @@ class BlogPage extends StatelessWidget {
         ),
       ),
       body: FutureBuilder<List<BlogPost>>(
-        future: ApiService().fetchBlogPosts(), // استدعاء خدمة API لجلب البيانات
+        future: ApiService().fetchBlogPosts(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // عرض مؤشر انتظار أثناء تحميل البيانات
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            // عرض رسالة خطأ في حالة حدوث خطأ أثناء الجلب
             return const Center(child: Text('Failed to load blog posts'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            // إذا لم تكن هناك بيانات، عرض رسالة مناسبة
             return const Center(child: Text('No posts available'));
           }
 
-          // عند نجاح الجلب وعرض البيانات
           final posts = snapshot.data!;
 
           return SingleChildScrollView(

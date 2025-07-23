@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // استيراد مكتبة ScreenUtil
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel1/providers/theme_provider.dart';
-import 'package:hotel1/api/api_service.dart'; // استيراد خدمة ApiService
+import 'package:hotel1/api/api_service.dart'; 
 
 class GalleryPage extends StatelessWidget {
   const GalleryPage({super.key});
@@ -30,20 +30,16 @@ class GalleryPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: FutureBuilder<List<String>>(
-        future: ApiService().fetchGalleryImages(), // استدعاء خدمة جلب الصور
+        future: ApiService().fetchGalleryImages(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-                child: CircularProgressIndicator()); // مؤشر انتظار
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return const Center(
-                child: Text('Failed to load images')); // رسالة خطأ
+            return const Center(child: Text('Failed to load images'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(
-                child: Text('No images available')); // في حال عدم وجود بيانات
+            return const Center(child: Text('No images available'));
           }
 
-          // عند نجاح الجلب
           List<String> imageUrls = snapshot.data!;
 
           return SingleChildScrollView(
@@ -65,7 +61,7 @@ class GalleryPage extends StatelessWidget {
                       elevation: 10,
                       shadowColor: Colors.black,
                       child: CachedNetworkImage(
-                        imageUrl: imageUrls[index], // استخدام الروابط مباشرة
+                        imageUrl: imageUrls[index], 
                         fit: BoxFit.cover,
                         placeholder: (context, url) =>
                             const Center(child: CircularProgressIndicator()),

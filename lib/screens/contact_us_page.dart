@@ -2,18 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'dart:ui'; // لإضافة تأثير الضبابي
+import 'dart:ui'; 
 import 'package:hotel1/providers/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactUsPage extends StatelessWidget {
-  // رابط Google Maps لموقع الفندق
+  
   final String googleMapsUrl =
       'https://www.google.com/maps/place/123+Dream+St,+Dream+City,+DR+12345';
 
   const ContactUsPage({super.key});
 
-  // دالة لفتح الرابط
+  
   Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -29,7 +29,6 @@ class ContactUsPage extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        // Dismiss keyboard and unfocus text fields when tapping outside
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
@@ -49,7 +48,6 @@ class ContactUsPage extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            // صورة الخلفية
             Positioned.fill(
               child: ImageFiltered(
                 imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -80,7 +78,6 @@ class ContactUsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // حقول النموذج
                   _buildTextField(context, 'Name', 'Enter your name'),
                   const SizedBox(height: 16),
                   _buildTextField(context, 'Email', 'Enter your email'),
@@ -235,7 +232,7 @@ class ContactUsPage extends StatelessWidget {
       ),
       style: TextStyle(
         color: Colors.black,
-        fontWeight: FontWeight.bold, // Make text bold while typing
+        fontWeight: FontWeight.bold, 
       ),
       maxLines: maxLines,
     );

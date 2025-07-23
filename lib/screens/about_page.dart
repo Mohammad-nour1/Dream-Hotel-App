@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hotel1/providers/theme_provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // استيراد مكتبة ScreenUtil
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -21,7 +21,7 @@ class AboutPage extends StatelessWidget {
             textStyle: TextStyle(
               color: isDarkTheme ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 26.sp, // استخدام وحدة sp
+              fontSize: 26.sp, 
             ),
           ),
         ),
@@ -31,46 +31,46 @@ class AboutPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: 24.w, vertical: 18.h), // استخدام وحدات w و h
+              horizontal: 24.w, vertical: 18.h), 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'About Our Hotel',
                 style: TextStyle(
-                  fontSize: 17.sp, // استخدام وحدة sp
+                  fontSize: 17.sp, 
                   fontWeight: FontWeight.bold,
                   color: isDarkTheme ? Colors.white : Colors.black,
                   height: 0.1,
                 ),
               ),
-              SizedBox(height: 10.h), // استخدام وحدة h
+              SizedBox(height: 10.h), 
               Text(
                 "The hotel was opened in 2014 and is a modern and elegant 4-star hotel overlooking the sea. It is ideal for a romantic and enchanting holiday, in the enchanting atmosphere of Taormina and the Ionian Sea."
                 "If you want perfect rooms, the rooms at our hotel are new, well-lit and attractive."
                 'Our reception staff will be happy to assist you during your stay at our hotel, suggesting itineraries, guided visits and some good restaurants.',
                 style: TextStyle(
-                  fontSize: 18.sp, // استخدام وحدة sp
+                  fontSize: 18.sp, 
                   height: 1.6,
                 ),
               ),
-              SizedBox(height: 20.h), // استخدام وحدة h
+              SizedBox(height: 20.h), 
               ElevatedButton(
                 onPressed: () {
-                  // Action for "Read More"
+                  
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: themeProvider.buttonColor,
                   padding: EdgeInsets.symmetric(
-                      horizontal: 25.w, vertical: 15.h), // استخدام وحدات w و h
-                  textStyle: TextStyle(fontSize: 15.sp), // استخدام وحدة sp
+                      horizontal: 25.w, vertical: 15.h), 
+                  textStyle: TextStyle(fontSize: 15.sp),
                 ),
                 child: const Text(
                   'Read More',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(height: 40.h), // استخدام وحدة h
+              SizedBox(height: 40.h), 
               CachedNetworkImage(
                 imageUrl:
                     'https://images.pexels.com/photos/14024019/pexels-photo-14024019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1/image.jpg',
